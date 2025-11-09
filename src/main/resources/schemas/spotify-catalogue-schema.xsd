@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="artists-schema.xsd"/>
+    <xs:include schemaLocation="bands-schema.xsd"/>
+    <xs:include schemaLocation="albums-schema.xsd"/>
+    <xs:include schemaLocation="tracks-schema.xsd"/>
+    <xs:include schemaLocation="playlists-schema.xsd"/>
+    <xs:include schemaLocation="users-schema.xsd"/>
+
+    <xs:element name="catalog">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="artists" type="artistList"/>
+                <xs:element name="bands" type="bandList"/>
+                <xs:element name="tracks" type="trackList"/>
+                <xs:element name="playlists" type="playlistList"/>
+                <xs:element name="users" type="userlist"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tracks>
+    <track>
+        <title>Starboy</title>
+        <durationSeconds>274</durationSeconds>
+        <explicit>true</explicit>
+        <lastPlayedAt>2025-11-27T23:00:00</lastPlayedAt>
+    </track>
+    <track>
+        <title>Brain Damage</title>
+        <durationSeconds>226</durationSeconds>
+        <explicit>true</explicit>
+        <lastPlayedAt>2024-05-10T15:00:00</lastPlayedAt>
+    </track>
+    <track>
+        <title>Houdini</title>
+        <durationSeconds>205</durationSeconds>
+        <explicit>false</explicit>
+        <lastPlayedAt>2025-12-09T16:00:00</lastPlayedAt>
+    </track>
+    <track>
+        <title>Demons</title>
+        <durationSeconds>177</durationSeconds>
+        <explicit>false</explicit>
+        <lastPlayedAt>2025-02-22T20:00:00</lastPlayedAt>
+    </track>
+    <track>
+        <title>In the End</title>
+        <durationSeconds>216</durationSeconds>
+        <explicit>false</explicit>
+        <lastPlayedAt>2025-01-26T21:00:00</lastPlayedAt>
+    </track>
+</tracks>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="genreEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pop"/>
+            <xs:enumeration value="Hiphop"/>
+            <xs:enumeration value="Rap"/>
+            <xs:enumeration value="Rock"/>
+            <xs:enumeration value="Country"/>
+            <xs:enumeration value="EDM"/>
+            <xs:enumeration value="Jazz"/>
+            <xs:enumeration value="Blues"/>
+            <xs:enumeration value="Classical"/>
+            <xs:enumeration value="Latin"/>
+            <xs:enumeration value="Metal"/>
+            <xs:enumeration value="Heavy Metal"/>
+            <xs:enumeration value="Punk"/>
+            <xs:enumeration value="Reggae"/>
+            <xs:enumeration value="Folk"/>
+            <xs:enumeration value="Soul"/>
+            <xs:enumeration value="Electronic"/>
+            <xs:enumeration value="Ambient"/>
+            <xs:enumeration value="Funk"/>
+            <xs:enumeration value="Trap"/>
+            <xs:enumeration value="Disco"/>
+            <xs:enumeration value="Indie"/>
+            <xs:enumeration value="Gospel"/>
+            <xs:enumeration value="House"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

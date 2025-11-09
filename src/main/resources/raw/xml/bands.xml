@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bands>
+    <band>
+        <name>Imagine Dragons</name>
+        <genre>Pop</genre>
+        <albums>
+            <album>
+                <title>Night Versions</title>
+                <releaseDate>2012-09-04</releaseDate>
+                <tracks>
+                    <track>
+                        <title>Demons</title>
+                        <durationSeconds>177</durationSeconds>
+                        <explicit>false</explicit>
+                        <lastPlayedAt>2025-09-22T20:00:00</lastPlayedAt>
+                    </track>
+                </tracks>
+            </album>
+        </albums>
+    </band>
+    <band>
+        <name>Linkin Park</name>
+        <genre>Rock</genre>
+        <albums>
+            <album>
+                <title>Hybrid Theory</title>
+                <releaseDate>2000-10-24</releaseDate>
+                <tracks>
+                    <track>
+                        <title>In the End</title>
+                        <durationSeconds>216</durationSeconds>
+                        <explicit>false</explicit>
+                        <lastPlayedAt>2025-10-23T21:00:00</lastPlayedAt>
+                    </track>
+                </tracks>
+            </album>
+        </albums>
+    </band>
+</bands>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlists>
+    <playlist>
+        <title>Joyride</title>
+        <tracks>
+            <track>
+                <title>Starboy</title>
+                <durationSeconds>274</durationSeconds>
+                <explicit>true</explicit>
+                <lastPlayedAt>2025-04-21T23:00:00</lastPlayedAt>
+            </track>
+            <track>
+                <title>Houdini</title>
+                <durationSeconds>205</durationSeconds>
+                <explicit>false</explicit>
+                <lastPlayedAt>2025-09-20T16:00:00</lastPlayedAt>
+            </track>
+        </tracks>
+    </playlist>
+</playlists>

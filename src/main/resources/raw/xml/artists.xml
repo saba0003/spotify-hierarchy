@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artists>
+    <artist>
+        <name>The Weeknd</name>
+        <genre>Pop</genre>
+        <albums>
+            <album>
+                <title>Starboy</title>
+                <releaseDate>2016-11-25</releaseDate>
+                <tracks>
+                    <track>
+                        <title>Starboy</title>
+                        <durationSeconds>274</durationSeconds>
+                        <explicit>true</explicit>
+                        <lastPlayedAt>2025-11-20T23:00:00</lastPlayedAt>
+                    </track>
+                </tracks>
+            </album>
+        </albums>
+    </artist>
+    <artist>
+        <name>Eminem</name>
+        <genre>Rap</genre>
+        <albums>
+            <album>
+                <title>The Slim Shady LP</title>
+                <releaseDate>1999-02-23</releaseDate>
+                <tracks>
+                    <track>
+                        <title>Brain Damage</title>
+                        <durationSeconds>226</durationSeconds>
+                        <explicit>true</explicit>
+                        <lastPlayedAt>2024-05-10T15:00:00</lastPlayedAt>
+                    </track>
+                </tracks>
+            </album>
+        </albums>
+    </artist>
+    <artist>
+        <name>Dua Lipa</name>
+        <genre>Pop</genre>
+        <albums>
+            <album>
+                <title>Radical Optimism</title>
+                <releaseDate>2024-05-03</releaseDate>
+                <tracks>
+                    <track>
+                        <title>Houdini</title>
+                        <durationSeconds>205</durationSeconds>
+                        <explicit>false</explicit>
+                        <lastPlayedAt>2025-09-12T16:00:00</lastPlayedAt>
+                    </track>
+                </tracks>
+            </album>
+        </albums>
+    </artist>
+</artists>
