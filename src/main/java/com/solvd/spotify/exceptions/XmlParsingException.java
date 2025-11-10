@@ -2,11 +2,17 @@ package com.solvd.spotify.exceptions;
 
 public class XmlParsingException extends RuntimeException {
 
+    private static final String PREFIX = "Error parsing XML: ";
+
     public XmlParsingException(String message) {
-        super(message);
+        super(PREFIX + message);
+    }
+
+    public XmlParsingException(Throwable cause) {
+        super(PREFIX + cause.getMessage());
     }
 
     public XmlParsingException(String message, Throwable cause) {
-        super(message, cause);
+        super(PREFIX + message, cause);
     }
 }

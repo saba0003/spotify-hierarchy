@@ -9,16 +9,18 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter
-@NoArgsConstructor // default constructor required by JAXB
+@Getter @Setter @ToString
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({Artist.class, Band.class})
 public abstract class MusicCreator {
+
+    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
 
     @XmlElement
     protected Integer id;
@@ -33,4 +35,8 @@ public abstract class MusicCreator {
     @XmlElement(name = "album")
     protected List<Album> albums;
 
+    // default constructor required by JAXB
+    protected MusicCreator() {
+        id = ID_GENERATOR.incrementAndGet();
+    }
 }

@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="albums-schema.xsd"/>
     <xs:include schemaLocation="genres-schema.xsd"/>
+    <xs:element name="artists" type="albumList"/>
     <xs:complexType name="artistList">
         <xs:sequence>
             <xs:element name="artist" maxOccurs="unbounded">

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import static com.solvd.spotify.config.GlobalProperties.DATE_FORMATTER;
 
-public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
+public final class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
 
     @Override
     public LocalDate unmarshal(String valueType) {

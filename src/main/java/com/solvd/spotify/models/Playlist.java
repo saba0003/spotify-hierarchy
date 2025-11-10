@@ -6,16 +6,18 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter
-@NoArgsConstructor // default constructor required by JAXB
+@Getter @Setter @ToString
 @XmlRootElement(name = "playlist")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Playlist {
+
+    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
 
     @XmlElement
     private Integer id;
@@ -27,4 +29,8 @@ public class Playlist {
     @XmlElement(name = "track")
     private List<Track> tracks;
 
+    // default constructor required by JAXB
+    public Playlist() {
+        id = ID_GENERATOR.incrementAndGet();
+    }
 }

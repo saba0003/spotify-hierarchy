@@ -7,16 +7,18 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter
-@NoArgsConstructor // default constructor required by JAXB
+@Getter @Setter @ToString
 @XmlRootElement(name = "track")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Track {
+
+    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
 
     @XmlElement
     private Integer id;
@@ -25,13 +27,18 @@ public class Track {
     private String title;
 
     @XmlElement
-    private int durationSeconds; // NUMBER requirement
+    private int durationSeconds;
 
     @XmlElement
-    private boolean explicit; // BOOLEAN requirement
+    private boolean explicit;
 
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-    private LocalDateTime lastPlayedAt; // DATETIME requirement
+    private LocalDateTime lastPlayedAt;
+
+    // default constructor required by JAXB
+    public Track() {
+        id = ID_GENERATOR.incrementAndGet();
+    }
 
 }

@@ -174,7 +174,7 @@ public class MusicCreatorStaxParser<T extends MusicCreator> {
             throw new XmlParsingException("asda", e);
         }
 
-        return List.of();
+        throw new XmlParsingException("shouldn't be here");
     }
 
     private void validateAgainstSchema(InputStream xmlInput, String schemaPath) throws XsdValidationException {
