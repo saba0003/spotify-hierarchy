@@ -1,6 +1,5 @@
 package com.solvd.spotify.models;
 
-import com.solvd.spotify.models.commons.MusicCreator;
 import com.solvd.spotify.utils.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -28,9 +27,6 @@ public class Album {
 
     @XmlElement
     private String title;
-
-    @XmlElement
-    private MusicCreator musicCreator;
 
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateAdapter.class)

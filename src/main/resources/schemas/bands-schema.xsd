@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="albums-schema.xsd"/>
-    <xs:include schemaLocation="genres-schema.xsd"/>
+    <xs:include schemaLocation="enums/genres-schema.xsd"/>
+
     <xs:element name="bands" type="bandList"/>
     <xs:complexType name="bandList">
         <xs:sequence>

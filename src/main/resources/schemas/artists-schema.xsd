@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:include schemaLocation="albums-schema.xsd"/>
-    <xs:include schemaLocation="genres-schema.xsd"/>
-    <xs:element name="artists" type="albumList"/>
+    <xs:include schemaLocation="enums/genres-schema.xsd"/>
+
+    <xs:element name="artists" type="artistList"/>
     <xs:complexType name="artistList">
         <xs:sequence>
             <xs:element name="artist" maxOccurs="unbounded">

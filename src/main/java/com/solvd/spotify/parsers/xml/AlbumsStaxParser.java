@@ -1,67 +1,43 @@
 package com.solvd.spotify.parsers.xml;
 
 import com.solvd.spotify.models.Album;
-import com.solvd.spotify.models.Track;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.XMLEvent;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class AlbumsStaxParser extends Parcelable<Album> {
+public class AlbumsStaxParser extends StaxParser<Album> {
 
     @Override
-    protected List<Album> parserLogic(XMLEventReader reader) throws XMLStreamException {
-        List<Album> albums = null;
-        Album currentAlbum = null;
-        XMLEvent event;
+    protected String collectionTag() {
+        return "albums";
+    }
 
-        while (reader.hasNext()) {
-            event = reader.nextEvent();
+    @Override
+    protected String itemTag() {
+        return "album";
+    }
 
-            if (!event.isStartElement() && !event.isEndElement())
-                continue;
+    @Override
+    protected Album createItem() {
+        return new Album();
+    }
 
-            if (event.isStartElement()) {
-                String tag = event.asStartElement().getName().getLocalPart();
+    @Override
+    protected void handleStartElement(String tag, XMLEventReader reader, Album album) throws XMLStreamException {
+        if ("title".equals(tag))
+            setTitle(reader, album);
+        else if ("releaseDate".equals(tag))
+            setReleaseDate(reader, album);
+        else
+            throw new IllegalStateException("Program shouldn't be here!");
+    }
 
-                switch (tag) {
-                    case "albums" -> albums = new ArrayList<>();
-                    case "album" -> currentAlbum = new Album();
-                    case "title" -> {
-                        if (currentAlbum == null)
-                            throw new NullPointerException(PREFIX.formatted("setTitle", "currentAlbum"));
-                        setTitle(reader, currentAlbum);
-                    }
-                    case "releaseDate" -> {
-                        if (currentAlbum == null)
-                            throw new NullPointerException(PREFIX.formatted("setReleaseDate", "currentAlbum"));
-                        setReleaseDate(reader, currentAlbum);
-                    }
-                }
-            } else if (event.isEndElement()) {
-                String tag = event.asEndElement().getName().getLocalPart();
-                if (currentAlbum == null)
-                    throw new NullPointerException(PREFIX.formatted("add", "currentAlbum"));
-                switch (tag) {
-                    case "album" -> {
-                        if (albums == null)
-                            throw new NullPointerException(PREFIX.formatted("add", "albums"));
-                        albums.add(currentAlbum);
-                    }
-                    case "releaseDate" -> setTracks(reader, currentAlbum);
-                    case "albums" -> {
-                        if (albums == null)
-                            throw new NullPointerException("'albums' variable is null!");
-                        return albums;
-                    }
-                }
-            }
-        }
-
-        throw new IllegalStateException("Program mustn't be here!");
+    @Override
+    protected void handleEndElement(String tag, XMLEventReader reader, Album album) throws XMLStreamException {
+        if ("releaseDate".equals(tag))
+            setTracks(reader, album);
+        // TODO: Exception handling can be added for illegal states
     }
 
     private void setTitle(XMLEventReader reader, Album album) throws XMLStreamException {
@@ -73,7 +49,6 @@ public class AlbumsStaxParser extends Parcelable<Album> {
     }
 
     private void setTracks(XMLEventReader reader, Album album) throws XMLStreamException {
-        List<Track> tracks = new TracksStaxParser().parserLogic(reader);
-        album.setTracks(tracks);
+        album.setTracks(new TracksStaxParser().parseCollection(reader));
     }
 }

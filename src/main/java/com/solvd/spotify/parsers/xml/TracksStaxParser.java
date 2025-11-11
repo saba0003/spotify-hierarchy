@@ -4,67 +4,39 @@ import com.solvd.spotify.models.Track;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.XMLEvent;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-public class TracksStaxParser extends Parcelable<Track> {
+public class TracksStaxParser extends StaxParser<Track> {
 
     @Override
-    protected List<Track> parserLogic(XMLEventReader reader) throws XMLStreamException {
-        List<Track> tracks = null;
-        Track currentTrack = null;
-        XMLEvent event;
+    protected String collectionTag() {
+        return "tracks";
+    }
 
-        while (reader.hasNext()) {
-            event = reader.nextEvent();
+    @Override
+    protected String itemTag() {
+        return "track";
+    }
 
-            if (!event.isStartElement() && !event.isEndElement())
-                continue;
+    @Override
+    protected Track createItem() {
+        return new Track();
+    }
 
-            if (event.isStartElement()) {
-                String tag = event.asStartElement().getName().getLocalPart();
-
-                switch (tag) {
-                    case "tracks" -> tracks = new ArrayList<>();
-                    case "track" -> currentTrack = new Track();
-                    case "title" -> {
-                        if (currentTrack == null)
-                            throw new NullPointerException(PREFIX.formatted("setTitle", "currentTrack"));
-                        setTitle(reader, currentTrack);
-                    }
-                    case "durationSeconds" -> {
-                        if (currentTrack == null)
-                            throw new NullPointerException(PREFIX.formatted("setDuration", "currentTrack"));
-                        setDuration(reader, currentTrack);
-                    }
-                    case "explicit" -> {
-                        if (currentTrack == null)
-                            throw new NullPointerException(PREFIX.formatted("setExplicit", "currentTrack"));
-                        setExplicit(reader, currentTrack);
-                    }
-                    case "lastPlayedAt" -> {
-                        if (currentTrack == null)
-                            throw new NullPointerException(PREFIX.formatted("setLastPlayedAt", "currentTrack"));
-                        setLastPlayedAt(reader, currentTrack);
-                    }
-                }
-            } else if (event.isEndElement()) {
-                String tag = event.asEndElement().getName().getLocalPart();
-                if (tag.equals("track") && currentTrack != null) {
-                    if (tracks == null)
-                        throw new NullPointerException(PREFIX.formatted("add", "tracks"));
-                    tracks.add(currentTrack);
-                } else if (tag.equals("tracks")) {
-                    if (tracks == null)
-                        throw new NullPointerException("'tracks' variable is null!");
-                    return tracks;
-                }
-            }
+    @Override
+    protected void handleStartElement(String tag, XMLEventReader reader, Track track) throws XMLStreamException {
+        switch (tag) {
+            case "title" -> setTitle(reader, track);
+            case "durationSeconds" -> setDuration(reader, track);
+            case "explicit" -> setExplicit(reader, track);
+            case "lastPlayedAt" -> setLastPlayedAt(reader, track);
+            default -> throw new IllegalStateException("Program shouldn't be here!");
         }
+    }
 
-        throw new IllegalStateException("Program mustn't be here!");
+    @Override
+    protected void handleEndElement(String tag, XMLEventReader reader, Track track) {
+        // Do nothing
     }
 
     private void setTitle(XMLEventReader reader, Track track) throws XMLStreamException {

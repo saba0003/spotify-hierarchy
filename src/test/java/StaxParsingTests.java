@@ -1,9 +1,5 @@
-import com.solvd.spotify.models.Album;
-import com.solvd.spotify.models.Playlist;
-import com.solvd.spotify.models.Track;
-import com.solvd.spotify.parsers.xml.AlbumsStaxParser;
-import com.solvd.spotify.parsers.xml.PlaylistsStaxParser;
-import com.solvd.spotify.parsers.xml.TracksStaxParser;
+import com.solvd.spotify.models.*;
+import com.solvd.spotify.parsers.xml.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +26,26 @@ public class StaxParsingTests {
         PlaylistsStaxParser playlistsParser = new PlaylistsStaxParser();
         List<Playlist> playlists = playlistsParser.parse("src/main/resources/raw/xml/playlists.xml", "src/main/resources/schemas/playlists-schema.xsd");
         Assertions.assertFalse(playlists.isEmpty());
+    }
+
+    @Test
+    void usersParseTest() {
+        UsersStaxParser usersParser = new UsersStaxParser();
+        List<User> users = usersParser.parse("src/main/resources/raw/xml/users.xml", "src/main/resources/schemas/users-schema.xsd");
+        Assertions.assertFalse(users.isEmpty());
+    }
+
+    @Test
+    void artistsParseTest() {
+        MusicCreatorsStaxParser<Artist> artistsParser = new MusicCreatorsStaxParser<>(Artist.class);
+        List<Artist> artists = artistsParser.parse("src/main/resources/raw/xml/artists.xml", "src/main/resources/schemas/artists-schema.xsd");
+        Assertions.assertFalse(artists.isEmpty());
+    }
+
+    @Test
+    void bandsParseTest() {
+        MusicCreatorsStaxParser<Band> bandsParser = new MusicCreatorsStaxParser<>(Band.class);
+        List<Band> bands = bandsParser.parse("src/main/resources/raw/xml/bands.xml", "src/main/resources/schemas/bands-schema.xsd");
+        Assertions.assertFalse(bands.isEmpty());
     }
 }

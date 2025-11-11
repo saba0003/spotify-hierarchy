@@ -1,7 +1,7 @@
 package com.solvd.spotify;
 
-import com.solvd.spotify.models.Playlist;
-import com.solvd.spotify.parsers.xml.PlaylistsStaxParser;
+import com.solvd.spotify.models.Band;
+import com.solvd.spotify.parsers.xml.MusicCreatorsStaxParser;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -11,8 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PlaylistsStaxParser playlistsParser = new PlaylistsStaxParser();
-        List<Playlist> playlists = playlistsParser.parse("src/main/resources/raw/xml/playlists.xml", "src/main/resources/schemas/playlists-schema.xsd");
-        playlists.forEach(playlist -> log.info(playlist.toString()));
+        MusicCreatorsStaxParser<Band> bandsParser = new MusicCreatorsStaxParser<>(Band.class);
+        List<Band> bands = bandsParser.parse("src/main/resources/raw/xml/bands.xml", "src/main/resources/schemas/bands-schema.xsd");
+        bands.forEach(band -> log.info(band.toString()));
     }
 }

@@ -1,61 +1,40 @@
 package com.solvd.spotify.parsers.xml;
 
 import com.solvd.spotify.models.Playlist;
-import com.solvd.spotify.models.Track;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.XMLEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PlaylistsStaxParser extends Parcelable<Playlist> {
+public class PlaylistsStaxParser extends StaxParser<Playlist> {
 
     @Override
-    protected List<Playlist> parserLogic(XMLEventReader reader) throws XMLStreamException {
-        List<Playlist> playlists = null;
-        Playlist currentPlaylist = null;
-        XMLEvent event;
+    protected String collectionTag() {
+        return "playlists";
+    }
 
-        while (reader.hasNext()) {
-            event = reader.nextEvent();
+    @Override
+    protected String itemTag() {
+        return "playlist";
+    }
 
-            if (!event.isStartElement() && !event.isEndElement())
-                continue;
+    @Override
+    protected Playlist createItem() {
+        return new Playlist();
+    }
 
-            if (event.isStartElement()) {
-                String tag = event.asStartElement().getName().getLocalPart();
+    @Override
+    protected void handleStartElement(String tag, XMLEventReader reader, Playlist playlist) throws XMLStreamException {
+        if ("title".equals(tag))
+            setTitle(reader, playlist);
+        else
+            throw new IllegalStateException("Program shouldn't be here!");
+    }
 
-                switch (tag) {
-                    case "playlists" -> playlists = new ArrayList<>();
-                    case "playlist" -> currentPlaylist = new Playlist();
-                    case "title" -> {
-                        if (currentPlaylist == null)
-                            throw new NullPointerException(PREFIX.formatted("setTitle", "currentPlaylist"));
-                        setTitle(reader, currentPlaylist);
-                    }
-                }
-            } else if (event.isEndElement()) {
-                String tag = event.asEndElement().getName().getLocalPart();
-                if (currentPlaylist == null)
-                    throw new NullPointerException(PREFIX.formatted("add", "currentPlaylist"));
-                switch (tag) {
-                    case "playlist" -> {
-                        if (playlists == null)
-                            throw new NullPointerException(PREFIX.formatted("add", "playlists"));
-                        playlists.add(currentPlaylist);
-                    }
-                    case "title" -> setTracks(reader, currentPlaylist);
-                    case "playlists" -> {
-                        if (playlists == null)
-                            throw new NullPointerException("'playlists' variable is null!");
-                        return playlists;
-                    }
-                }
-            }
-        }
-
-        throw new IllegalStateException("Program mustn't be here!");
+    @Override
+    protected void handleEndElement(String tag, XMLEventReader reader, Playlist playlist) throws XMLStreamException {
+        if ("title".equals(tag))
+            setTracks(reader, playlist);
+        // TODO: Exception handling can be added for illegal states
     }
 
     private void setTitle(XMLEventReader reader, Playlist playlist) throws XMLStreamException {
@@ -63,7 +42,6 @@ public class PlaylistsStaxParser extends Parcelable<Playlist> {
     }
 
     private void setTracks(XMLEventReader reader, Playlist playlist) throws XMLStreamException {
-        List<Track> tracks = new TracksStaxParser().parserLogic(reader);
-        playlist.setTracks(tracks);
+        playlist.setTracks(new TracksStaxParser().parseCollection(reader));
     }
 }
