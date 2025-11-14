@@ -1,26 +1,18 @@
 package com.solvd.spotify.models;
 
-import com.solvd.spotify.utils.LocalDateTimeAdapter;
+import com.solvd.spotify.parsers.xml.jaxb.adapters.LocalDateTimeAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter @ToString
 @XmlRootElement(name = "track")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Track {
 
-    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
-
-    @XmlElement
     private Integer id;
 
     @XmlElement
@@ -36,9 +28,54 @@ public class Track {
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime lastPlayedAt;
 
-    // default constructor required by JAXB
-    public Track() {
-        id = ID_GENERATOR.incrementAndGet();
+    public Integer getId() {
+        return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getDurationSeconds() {
+        return durationSeconds;
+    }
+
+    public void setDurationSeconds(int durationSeconds) {
+        this.durationSeconds = durationSeconds;
+    }
+
+    public boolean isExplicit() {
+        return explicit;
+    }
+
+    public void setExplicit(boolean explicit) {
+        this.explicit = explicit;
+    }
+
+    public LocalDateTime getLastPlayedAt() {
+        return lastPlayedAt;
+    }
+
+    public void setLastPlayedAt(LocalDateTime lastPlayedAt) {
+        this.lastPlayedAt = lastPlayedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", durationSeconds=" + durationSeconds +
+                ", explicit=" + explicit +
+                ", lastPlayedAt=" + lastPlayedAt +
+                '}';
+    }
 }

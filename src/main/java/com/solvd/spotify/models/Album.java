@@ -1,28 +1,20 @@
 package com.solvd.spotify.models;
 
-import com.solvd.spotify.utils.LocalDateAdapter;
+import com.solvd.spotify.parsers.xml.jaxb.adapters.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter @ToString
 @XmlRootElement(name = "album")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Album {
 
-    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
-
-    @XmlElement
     private Integer id;
 
     @XmlElement
@@ -30,14 +22,51 @@ public class Album {
 
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate releaseDate; // DATE requirement
+    private LocalDate releaseDate;
 
     @XmlElementWrapper(name = "tracks")
     @XmlElement(name = "track")
     private List<Track> tracks;
 
-    // default constructor required by JAXB
-    public Album() {
-        id = ID_GENERATOR.incrementAndGet();
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", tracks=" + tracks +
+                '}';
     }
 }

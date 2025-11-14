@@ -3,40 +3,72 @@ package com.solvd.spotify.models.commons;
 import com.solvd.spotify.models.Album;
 import com.solvd.spotify.models.Artist;
 import com.solvd.spotify.models.Band;
+import com.solvd.spotify.parsers.xml.jaxb.adapters.GenreAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
-@Getter @Setter @ToString
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({Artist.class, Band.class})
 public abstract class MusicCreator {
 
-    private static final AtomicInteger ID_GENERATOR = new AtomicInteger(0);
-
-    @XmlElement
     protected Integer id;
 
     @XmlElement
     protected String name;
 
-    @XmlElement
+    @XmlElement(name = "genre")
+    @XmlJavaTypeAdapter(GenreAdapter.class)
     protected Genre genre;
 
     @XmlElementWrapper(name = "albums")
     @XmlElement(name = "album")
     protected List<Album> albums;
 
-    // default constructor required by JAXB
-    protected MusicCreator() {
-        id = ID_GENERATOR.incrementAndGet();
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public List<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<Album> albums) {
+        this.albums = albums;
+    }
+
+    @Override
+    public String toString() {
+        return "MusicCreator{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre=" + genre +
+                ", albums=" + albums +
+                '}';
     }
 }
