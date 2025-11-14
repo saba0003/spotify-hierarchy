@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS subscriptions (
     id SERIAL PRIMARY KEY,
-    type VARCHAR(50) NOT NULL,
+    type TEXT NOT NULL,
     start_date DATE,
     end_date DATE,
     user_id INT NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS playlist_tracks (
 CREATE TABLE IF NOT EXISTS music_creators (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    genre VARCHAR(50)
+    genre TEXT
 );
 
 CREATE TABLE IF NOT EXISTS artists (
