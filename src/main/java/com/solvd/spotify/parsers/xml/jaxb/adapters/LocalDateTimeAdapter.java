@@ -1,4 +1,4 @@
-package com.solvd.spotify.utils;
+package com.solvd.spotify.parsers.xml.jaxb.adapters;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 

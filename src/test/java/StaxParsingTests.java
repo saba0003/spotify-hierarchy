@@ -1,5 +1,5 @@
 import com.solvd.spotify.models.*;
-import com.solvd.spotify.parsers.xml.*;
+import com.solvd.spotify.parsers.xml.stax.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

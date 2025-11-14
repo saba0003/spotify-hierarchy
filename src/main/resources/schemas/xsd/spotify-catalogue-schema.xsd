@@ -7,11 +7,17 @@
     <xs:include schemaLocation="playlists-schema.xsd"/>
     <xs:include schemaLocation="users-schema.xsd"/>
 
-    <xs:element name="catalog">
+    <xs:element name="catalogue">
         <xs:complexType>
             <xs:all>
-                <xs:element name="artists" type="artistList"/>
-                <xs:element name="bands" type="bandList"/>
+                <xs:element name="musicCreators">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="artists" type="artistList"/>
+                            <xs:element name="bands" type="bandList"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="tracks" type="trackList"/>
                 <xs:element name="playlists" type="playlistList"/>
                 <xs:element name="users" type="userlist"/>

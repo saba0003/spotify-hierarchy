@@ -1,4 +1,4 @@
-package com.solvd.spotify.parsers.xml;
+package com.solvd.spotify.parsers.xml.stax;
 
 import com.solvd.spotify.models.Album;
 
