@@ -1,21 +1,28 @@
-package com.solvd.spotify.models;
+package com.solvd.spotify.domain.models;
 
+import com.solvd.spotify.parsers.xml.jaxb.adapters.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import java.time.LocalDate;
 import java.util.List;
 
-@XmlRootElement(name = "playlist")
+@XmlRootElement(name = "album")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Playlist {
+public class AlbumXml {
 
     private Integer id;
 
     @XmlElement
     private String title;
+
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate releaseDate;
 
     @XmlElementWrapper(name = "tracks")
     @XmlElement(name = "track")
@@ -37,6 +44,14 @@ public class Playlist {
         this.title = title;
     }
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     public List<Track> getTracks() {
         return tracks;
     }
@@ -47,9 +62,10 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" +
+        return "AlbumXml{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
                 ", tracks=" + tracks +
                 '}';
     }

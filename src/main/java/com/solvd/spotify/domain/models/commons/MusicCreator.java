@@ -1,8 +1,8 @@
-package com.solvd.spotify.models.commons;
+package com.solvd.spotify.domain.models.commons;
 
-import com.solvd.spotify.models.Album;
-import com.solvd.spotify.models.Artist;
-import com.solvd.spotify.models.Band;
+import com.solvd.spotify.domain.models.AlbumXml;
+import com.solvd.spotify.domain.models.Artist;
+import com.solvd.spotify.domain.models.Band;
 import com.solvd.spotify.parsers.xml.jaxb.adapters.GenreAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -26,9 +26,9 @@ public abstract class MusicCreator {
     @XmlJavaTypeAdapter(GenreAdapter.class)
     protected Genre genre;
 
-    @XmlElementWrapper(name = "albums")
+    @XmlElementWrapper(name = "albumXmls")
     @XmlElement(name = "album")
-    protected List<Album> albums;
+    protected List<AlbumXml> albumXmls;
 
     public Integer getId() {
         return id;
@@ -54,12 +54,12 @@ public abstract class MusicCreator {
         this.genre = genre;
     }
 
-    public List<Album> getAlbums() {
-        return albums;
+    public List<AlbumXml> getAlbums() {
+        return albumXmls;
     }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
+    public void setAlbums(List<AlbumXml> albumXmls) {
+        this.albumXmls = albumXmls;
     }
 
     @Override
@@ -68,7 +68,7 @@ public abstract class MusicCreator {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", genre=" + genre +
-                ", albums=" + albums +
+                ", albumXmls=" + albumXmls +
                 '}';
     }
 }

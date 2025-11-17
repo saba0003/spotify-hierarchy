@@ -1,4 +1,4 @@
-package com.solvd.spotify.exceptions;
+package com.solvd.spotify.parsers.xml.stax.exceptions;
 
 public class XsdValidationException extends RuntimeException {
 

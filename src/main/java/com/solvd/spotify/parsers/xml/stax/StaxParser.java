@@ -1,6 +1,6 @@
 package com.solvd.spotify.parsers.xml.stax;
 
-import com.solvd.spotify.exceptions.XmlParsingException;
+import com.solvd.spotify.parsers.xml.exceptions.XmlParsingException;
 import com.solvd.spotify.utils.XMLValidator;
 
 import javax.xml.stream.XMLEventReader;

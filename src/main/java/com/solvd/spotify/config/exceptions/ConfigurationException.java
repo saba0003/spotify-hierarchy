@@ -1,4 +1,4 @@
-package com.solvd.spotify.exceptions;
+package com.solvd.spotify.config.exceptions;
 
 public class ConfigurationException extends RuntimeException {
 

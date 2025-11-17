@@ -1,18 +1,16 @@
 package com.solvd.spotify;
 
-import com.solvd.spotify.models.Band;
-import com.solvd.spotify.parsers.xml.MusicCreatorsStaxParser;
-import lombok.extern.slf4j.Slf4j;
+import com.solvd.spotify.domain.models.Artist;
+import com.solvd.spotify.parsers.xml.stax.MusicCreatorsStaxParser;
 
 import java.util.List;
 
-@Slf4j
 public class Main {
 
     public static void main(String[] args) {
 
-        MusicCreatorsStaxParser<Band> bandsParser = new MusicCreatorsStaxParser<>(Band.class);
-        List<Band> bands = bandsParser.parse("src/main/resources/raw/xml/bands.xml", "src/main/resources/schemas/bands-schema.xsd");
-        bands.forEach(band -> log.info(band.toString()));
+        MusicCreatorsStaxParser<Artist> artistsParser = new MusicCreatorsStaxParser<>(Artist.class);
+        List<Artist> artists = artistsParser.parse("src/main/resources/raw/xml/artists.xml", "src/main/resources/schemas/xsd/artists-schema.xsd");
+        artists.forEach(artist -> System.out.println(artist));
     }
 }

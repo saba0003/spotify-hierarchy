@@ -1,6 +1,6 @@
 package com.solvd.spotify.config;
 
-import com.solvd.spotify.exceptions.ConfigurationException;
+import com.solvd.spotify.config.exceptions.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +16,9 @@ public final class GlobalProperties {
 
     public static DateTimeFormatter DATE_FORMATTER;
     public static DateTimeFormatter DATE_TIME_FORMATTER;
+    public static String JDBC_URL;
+    public static String POSTGRES_USERNAME;
+    public static String POSTGRES_PASSWORD;
 
     static {
         try {
@@ -39,12 +42,18 @@ public final class GlobalProperties {
 
             String datePattern = PROPS.getProperty("date.format");
             String datetimePattern = PROPS.getProperty("datetime.format");
+            String jdbcUrl = PROPS.getProperty("jdbc.url");
+            String postgresUsername = PROPS.getProperty("postgres.username");
+            String postgresPassword = PROPS.getProperty("postgres.password");
 
             if (datePattern == null || datetimePattern == null)
                 throw new ConfigurationException("Missing required date format properties");
 
             DATE_FORMATTER = DateTimeFormatter.ofPattern(datePattern);
             DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(datetimePattern);
+            JDBC_URL = jdbcUrl;
+            POSTGRES_USERNAME = postgresUsername;
+            POSTGRES_PASSWORD = postgresPassword;
 
         } catch (IOException e) {
             throw new ConfigurationException("Failed to read global.properties", e);

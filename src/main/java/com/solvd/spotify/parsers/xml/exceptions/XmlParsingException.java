@@ -1,4 +1,4 @@
-package com.solvd.spotify.exceptions;
+package com.solvd.spotify.parsers.xml.exceptions;
 
 public class XmlParsingException extends RuntimeException {
 

@@ -3,15 +3,6 @@ CREATE TABLE IF NOT EXISTS users (
     username TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS subscriptions (
-    id SERIAL PRIMARY KEY,
-    type TEXT NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    user_id INT NOT NULL,
-    CONSTRAINT fk_user_subscription FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
 CREATE TABLE IF NOT EXISTS playlists (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,

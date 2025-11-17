@@ -1,4 +1,4 @@
-package com.solvd.spotify.models;
+package com.solvd.spotify.domain.models;
 
 import com.solvd.spotify.parsers.xml.jaxb.adapters.LocalDateTimeAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;

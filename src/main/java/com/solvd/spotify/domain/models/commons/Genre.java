@@ -1,4 +1,4 @@
-package com.solvd.spotify.models.commons;
+package com.solvd.spotify.domain.models.commons;
 
 public enum Genre {
 

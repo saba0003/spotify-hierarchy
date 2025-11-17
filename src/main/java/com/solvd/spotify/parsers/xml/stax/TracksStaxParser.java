@@ -1,6 +1,6 @@
 package com.solvd.spotify.parsers.xml.stax;
 
-import com.solvd.spotify.models.Track;
+import com.solvd.spotify.domain.models.Track;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;

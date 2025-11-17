@@ -1,6 +1,6 @@
-package com.solvd.spotify.models;
+package com.solvd.spotify.domain.models;
 
-import com.solvd.spotify.models.commons.MusicCreator;
+import com.solvd.spotify.domain.models.commons.MusicCreator;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
@@ -23,21 +23,21 @@ public class SpotifyCatalogue {
     })
     private List<MusicCreator> musicCreators;
 
-    @XmlElementWrapper(name = "albums")
+    @XmlElementWrapper(name = "albumXmls")
     @XmlElement(name = "album")
-    private List<Album> albums;
+    private List<AlbumXml> albumXmls;
 
     @XmlElementWrapper(name = "tracks")
     @XmlElement(name = "track")
     private List<Track> tracks;
 
-    @XmlElementWrapper(name = "playlists")
+    @XmlElementWrapper(name = "playlistXmls")
     @XmlElement(name = "playlist")
-    private List<Playlist> playlists;
+    private List<PlaylistXml> playlistXmls;
 
-    @XmlElementWrapper(name = "users")
+    @XmlElementWrapper(name = "userXmls")
     @XmlElement(name = "user")
-    private List<User> users;
+    private List<UserXml> userXmls;
 
     public Integer getId() {
         return id;
@@ -55,12 +55,12 @@ public class SpotifyCatalogue {
         this.musicCreators = musicCreators;
     }
 
-    public List<Album> getAlbums() {
-        return albums;
+    public List<AlbumXml> getAlbums() {
+        return albumXmls;
     }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
+    public void setAlbums(List<AlbumXml> albumXmls) {
+        this.albumXmls = albumXmls;
     }
 
     public List<Track> getTracks() {
@@ -71,30 +71,30 @@ public class SpotifyCatalogue {
         this.tracks = tracks;
     }
 
-    public List<Playlist> getPlaylists() {
-        return playlists;
+    public List<PlaylistXml> getPlaylists() {
+        return playlistXmls;
     }
 
-    public void setPlaylists(List<Playlist> playlists) {
-        this.playlists = playlists;
+    public void setPlaylists(List<PlaylistXml> playlistXmls) {
+        this.playlistXmls = playlistXmls;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserXml> getUsers() {
+        return userXmls;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(List<UserXml> userXmls) {
+        this.userXmls = userXmls;
     }
 
     @Override
     public String toString() {
         return "SpotifyCatalogue{" +
                 "musicCreators=" + musicCreators +
-                ", albums=" + albums +
+                ", albumXmls=" + albumXmls +
                 ", tracks=" + tracks +
-                ", playlists=" + playlists +
-                ", users=" + users +
+                ", playlistXmls=" + playlistXmls +
+                ", userXmls=" + userXmls +
                 '}';
     }
 }

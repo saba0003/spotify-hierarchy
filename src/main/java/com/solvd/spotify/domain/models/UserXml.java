@@ -1,6 +1,6 @@
-package com.solvd.spotify.models;
+package com.solvd.spotify.domain.models;
 
-import com.solvd.spotify.models.commons.Subscription;
+import com.solvd.spotify.domain.models.commons.Subscription;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -11,16 +11,16 @@ import java.util.List;
 
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class User {
+public class UserXml {
 
     private Integer id;
 
     @XmlElement
     private String username;
 
-    @XmlElementWrapper(name = "playlists")
+    @XmlElementWrapper(name = "playlist")
     @XmlElement(name = "playlist")
-    private List<Playlist> playlists;
+    private List<PlaylistXml> playlistsXml;
 
     @XmlElement
     private Subscription subscription;
@@ -41,12 +41,12 @@ public class User {
         this.username = username;
     }
 
-    public List<Playlist> getPlaylists() {
-        return playlists;
+    public List<PlaylistXml> getPlaylists() {
+        return playlistsXml;
     }
 
-    public void setPlaylists(List<Playlist> playlists) {
-        this.playlists = playlists;
+    public void setPlaylists(List<PlaylistXml> playlistXmls) {
+        this.playlistsXml = playlistXmls;
     }
 
     public Subscription getSubscription() {
@@ -59,10 +59,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserXml{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", playlists=" + playlists +
+                ", playlistsXml=" + playlistsXml +
                 ", subscription=" + subscription +
                 '}';
     }

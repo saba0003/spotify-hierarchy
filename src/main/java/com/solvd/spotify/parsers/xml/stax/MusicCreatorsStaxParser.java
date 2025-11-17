@@ -1,9 +1,9 @@
 package com.solvd.spotify.parsers.xml.stax;
 
-import com.solvd.spotify.models.Artist;
-import com.solvd.spotify.models.Band;
-import com.solvd.spotify.models.commons.Genre;
-import com.solvd.spotify.models.commons.MusicCreator;
+import com.solvd.spotify.domain.models.Artist;
+import com.solvd.spotify.domain.models.Band;
+import com.solvd.spotify.domain.models.commons.Genre;
+import com.solvd.spotify.domain.models.commons.MusicCreator;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;

@@ -1,6 +1,6 @@
-package com.solvd.spotify.models;
+package com.solvd.spotify.domain.models;
 
-import com.solvd.spotify.models.commons.MusicCreator;
+import com.solvd.spotify.domain.models.commons.MusicCreator;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -15,7 +15,7 @@ public class Band extends MusicCreator {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", genre=" + genre +
-                ", albums=" + albums +
+                ", albumXmls=" + albumXmls +
                 '}';
     }
 }
